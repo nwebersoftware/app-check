@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { readFileSync, readdirSync } from 'node:fs';
-import { extname, join } from 'node:path';
+import { join } from 'node:path';
 
-import { classify, checksFor, runCheck, SUPPORTED } from '../src/run.mjs';
+import { classify, checksFor, runCheck } from '../src/run.mjs';
 
 const HELP = `app-check — check a mobile build before the stores do
 
@@ -47,7 +47,7 @@ function collect(dir, out = []) {
     if (e.name.startsWith('.') || SKIP.has(e.name)) continue;
     const p = join(dir, e.name);
     if (e.isDirectory()) collect(p, out);
-    else if (SUPPORTED.includes(extname(e.name).toLowerCase())) out.push(p);
+    else if (classify(e.name)) out.push(p);
   }
   return out;
 }
@@ -79,7 +79,7 @@ for (const file of files) {
     badInput = true;
     continue;
   }
-  for (const k of checksFor(kind)) {
+  for (const k of checksFor(kind, file)) {
     const co = { label: file };
     if (k === 'icon' && opts.android) co.platform = 'android';
     if (k === 'ios' && opts.bundleId) co.bundleId = opts.bundleId;

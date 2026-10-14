@@ -9,7 +9,9 @@ npx @njweber/app-check ./build/app-release.aab ./build/YourApp.ipa ./assets/icon
 
 | Artifact | What it's checked for | Under the hood |
 |---|---|---|
-| `*.aab`, `*.apk` | Android 16 KB page-size compliance | [`store-check`](https://github.com/nwebersoftware/store-check) |
+| `*.aab` | Android 16 KB page size **and** the manifest audit | [`store-check`](https://github.com/nwebersoftware/store-check) + [`manifest-check`](https://github.com/nwebersoftware/manifest-check) |
+| `*.apk` | Android 16 KB page size | [`store-check`](https://github.com/nwebersoftware/store-check) |
+| `AndroidManifest.xml` | Android manifest audit | [`manifest-check`](https://github.com/nwebersoftware/manifest-check) |
 | `*.ipa` | App Store submission pitfalls **and** privacy usage descriptions | [`ipa-check`](https://github.com/nwebersoftware/ipa-check) + [`privacy-check`](https://github.com/nwebersoftware/privacy-check) |
 | `*.png` | icon size / alpha rules | [`icon-check`](https://github.com/nwebersoftware/icon-check) |
 
@@ -57,10 +59,11 @@ to discover mid-review.
 
 ## Family
 
-Each check is also its own focused tool: `store-check` · `ipa-check` · `privacy-check` · `icon-check`.
+Each check is also its own focused tool: `store-check` · `manifest-check` · `ipa-check` · `privacy-check` · `icon-check`.
 
 An `.ipa` deliberately runs **two** audits — submission shape (`ipa-check`) and privacy declarations
-(`privacy-check`).
+(`privacy-check`). An `.aab` runs **two** as well — the 16 KB page-size check (`store-check`) and the
+manifest audit (`manifest-check`).
 
 ## License
 

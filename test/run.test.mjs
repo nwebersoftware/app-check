@@ -17,9 +17,19 @@ test('supported list covers the three kinds', () => {
 });
 
 test('an .ipa maps to two audits (submission + privacy)', () => {
-  assert.deepEqual(checksFor(classify('App.ipa')), ['ios', 'privacy']);
-  assert.deepEqual(checksFor(classify('app.aab')), ['android']);
-  assert.deepEqual(checksFor(classify('icon.png')), ['icon']);
+  assert.deepEqual(checksFor(classify('App.ipa'), 'App.ipa'), ['ios', 'privacy']);
+  assert.deepEqual(checksFor(classify('icon.png'), 'icon.png'), ['icon']);
+});
+
+test('an .aab maps to two audits (16 KB + manifest); an .apk to one', () => {
+  assert.deepEqual(checksFor(classify('app.aab'), 'app.aab'), ['android', 'manifest']);
+  assert.deepEqual(checksFor(classify('app.apk'), 'app.apk'), ['android']);
+});
+
+test('a text AndroidManifest.xml is recognised', () => {
+  const p = 'android/app/src/main/AndroidManifest.xml';
+  assert.equal(classify(p), 'manifest');
+  assert.deepEqual(checksFor(classify(p), p), ['manifest']);
 });
 
 test('runs the icon check and formats it', () => {
