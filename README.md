@@ -1,5 +1,8 @@
 # app-check
 
+[![npm](https://img.shields.io/npm/v/%40njweber%2Fapp-check)](https://www.npmjs.com/package/@njweber/app-check) [![downloads](https://img.shields.io/npm/dm/%40njweber%2Fapp-check)](https://www.npmjs.com/package/@njweber/app-check) [![CI](https://github.com/nwebersoftware/app-check/actions/workflows/ci.yml/badge.svg)](https://github.com/nwebersoftware/app-check/actions/workflows/ci.yml)
+
+
 **One command to check a mobile build before the stores do.** `app-check` auto-detects the artifact,
 runs the right audit, and aggregates the result:
 
