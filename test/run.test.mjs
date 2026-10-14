@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { classify, runCheck, SUPPORTED } from '../src/run.mjs';
+import { classify, checksFor, runCheck, SUPPORTED } from '../src/run.mjs';
 import { makePng } from './helpers.mjs';
 
 test('classifies artifacts by extension', () => {
@@ -14,6 +14,12 @@ test('classifies artifacts by extension', () => {
 
 test('supported list covers the three kinds', () => {
   assert.deepEqual(SUPPORTED.sort(), ['.aab', '.apk', '.ipa', '.png']);
+});
+
+test('an .ipa maps to two audits (submission + privacy)', () => {
+  assert.deepEqual(checksFor(classify('App.ipa')), ['ios', 'privacy']);
+  assert.deepEqual(checksFor(classify('app.aab')), ['android']);
+  assert.deepEqual(checksFor(classify('icon.png')), ['icon']);
 });
 
 test('runs the icon check and formats it', () => {

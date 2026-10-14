@@ -2,7 +2,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { extname, join } from 'node:path';
 
-import { classify, runCheck, SUPPORTED } from '../src/run.mjs';
+import { classify, checksFor, runCheck, SUPPORTED } from '../src/run.mjs';
 
 const HELP = `app-check — check a mobile build before the stores do
 
@@ -79,10 +79,12 @@ for (const file of files) {
     badInput = true;
     continue;
   }
-  const co = { label: file };
-  if (kind === 'icon' && opts.android) co.platform = 'android';
-  if (kind === 'ios' && opts.bundleId) co.bundleId = opts.bundleId;
-  results.push(runCheck(kind, buf, co));
+  for (const k of checksFor(kind)) {
+    const co = { label: file };
+    if (k === 'icon' && opts.android) co.platform = 'android';
+    if (k === 'ios' && opts.bundleId) co.bundleId = opts.bundleId;
+    results.push(runCheck(k, buf, co));
+  }
 }
 
 const failed = results.filter((r) => !r.report.ok).length;
