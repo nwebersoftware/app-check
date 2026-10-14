@@ -1,0 +1,18 @@
+name: app-check
+description: Check a mobile build before the stores do — Android 16 KB page size, iOS .ipa pitfalls, icon rules.
+branding:
+  icon: check-circle
+  color: green
+
+inputs:
+  path:
+    description: One or more artifact paths, or a directory to scan.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        npm install --prefix "${{ github.action_path }}" --no-audit --no-fund --silent
+        node "${{ github.action_path }}/bin/app-check.mjs" ${{ inputs.path }}
