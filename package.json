@@ -1,5 +1,5 @@
 {
-  "name": "app-check",
+  "name": "@njweber/app-check",
   "version": "0.1.0",
   "description": "One command to check a mobile build before the stores do — Android 16 KB page size, iOS .ipa pitfalls, and icon rules.",
   "type": "module",

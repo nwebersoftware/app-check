@@ -4,7 +4,7 @@
 runs the right audit, and aggregates the result:
 
 ```bash
-npx app-check ./build/app-release.aab ./build/YourApp.ipa ./assets/icon.png
+npx @njweber/app-check ./build/app-release.aab ./build/YourApp.ipa ./assets/icon.png
 ```
 
 | Artifact | What it's checked for | Under the hood |
@@ -28,15 +28,15 @@ npx app-check ./build/app-release.aab ./build/YourApp.ipa ./assets/icon.png
 
 ```bash
 # explicit files
-npx app-check ./app-release.aab ./YourApp.ipa
+npx @njweber/app-check ./app-release.aab ./YourApp.ipa
 
 # scan a build directory (recursive; skips node_modules/.git/ios/android)
-npx app-check --dir ./dist
+npx @njweber/app-check --dir ./dist
 
 # options
-npx app-check ./assets/icon.png --android        # adaptive-icon foreground rules
-npx app-check ./YourApp.ipa --bundle-id com.acme.app
-npx app-check --dir ./dist --json                # machine-readable
+npx @njweber/app-check ./assets/icon.png --android        # adaptive-icon foreground rules
+npx @njweber/app-check ./YourApp.ipa --bundle-id com.acme.app
+npx @njweber/app-check --dir ./dist --json                # machine-readable
 ```
 
 **Exit codes:** `0` all good · `1` at least one blocking issue · `2` bad input.
