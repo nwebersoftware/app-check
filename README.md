@@ -68,6 +68,12 @@ An `.ipa` deliberately runs **two** audits — submission shape (`ipa-check`) an
 (`privacy-check`). An `.aab` runs **two** as well — the 16 KB page-size check (`store-check`) and the
 manifest audit (`manifest-check`).
 
+## Follow along
+
+More of this at **https://booleanbuild.com** — the tools hub, plus write-ups on store
+rejections, CI, build gates, and shipping TestFlight builds without EAS. New posts land
+roughly twice a month. Subscribe: https://booleanbuild.com/#subscribe
+
 ## License
 
 MIT.
