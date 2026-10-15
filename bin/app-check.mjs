@@ -54,9 +54,17 @@ function collect(dir, out = []) {
 
 const { paths, opts } = parse(process.argv.slice(2));
 const files = [...paths];
-if (opts.dir) files.push(...collect(opts.dir));
+if (opts.dir) {
+  try {
+    files.push(...collect(opts.dir));
+  } catch (e) {
+    process.stderr.write(`cannot scan ${opts.dir}: ${e.message}\n`);
+    process.exit(2);
+  }
+}
 
 if (files.length === 0) {
+  if (opts.dir) process.stderr.write(`no checkable files found in ${opts.dir}\n`);
   process.stderr.write(HELP);
   process.exit(2);
 }

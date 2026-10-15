@@ -1,22 +1,44 @@
 {
   "name": "@njweber/app-check",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "One command to check a mobile build before the stores do — Android 16 KB page size, iOS .ipa pitfalls, and icon rules.",
   "type": "module",
   "bin": {
     "app-check": "bin/app-check.mjs"
   },
-  "files": ["bin", "src", "README.md", "LICENSE"],
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "node --test"
   },
-  "keywords": ["ios", "android", "app-store", "google-play", "release", "submission", "react-native", "expo", "cli"],
-  "repository": { "type": "git", "url": "git+https://github.com/nwebersoftware/app-check.git" },
+  "keywords": [
+    "ios",
+    "android",
+    "app-store",
+    "google-play",
+    "release",
+    "submission",
+    "react-native",
+    "expo",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nwebersoftware/app-check.git"
+  },
   "homepage": "https://github.com/nwebersoftware/app-check#readme",
-  "bugs": { "url": "https://github.com/nwebersoftware/app-check/issues" },
+  "bugs": {
+    "url": "https://github.com/nwebersoftware/app-check/issues"
+  },
   "author": "Boolean Build (a Boolean Bros project)",
   "license": "MIT",
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "@njweber/store-check": "^0.1.0",
     "@njweber/android-manifest-check": "^0.1.0",
